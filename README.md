@@ -127,18 +127,5 @@ const debouncedSearch = useDebounce(search, 300);
 const throttledScroll = useThrottle(onScroll, 100);
 ```
 
-## 🤝 Contribuindo
 
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/Feature`)
-3. Commit (`git commit -m 'Add Feature'`)
-4. Push (`git push origin feature/Feature`)
-5. Pull Request
 
-## 📝 Licença
-
-Projeto desenvolvido para o FIAP Tech Challenge 2.
-
----
-
-**Made with ❤️ for FIAP**
