@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { securityMiddleware } from "~/infrastructure/security/security.middleware";
 
 // Rotas públicas que não requerem autenticação
 const PUBLIC_ROUTES = ["/", "/login"];
@@ -9,14 +8,6 @@ const PUBLIC_ROUTES = ["/", "/login"];
 const PROTECTED_ROUTES = ["/dashboard", "/investimentos"];
 
 export function middleware(request: NextRequest) {
-  // Aplica middleware de segurança primeiro
-  const securityResponse = securityMiddleware(request);
-  
-  // Se o securityMiddleware retornou erro (não é um "next"), retorna a resposta de erro
-  if (securityResponse.status >= 400) {
-    return securityResponse;
-  }
-
   const token = request.cookies.get("authToken")?.value;
   const pathname = request.nextUrl.pathname;
 
