@@ -1,4 +1,4 @@
-import { api, setCookie, deleteCookie } from '~/lib/axios';
+import { api, deleteCookie } from '~/lib/axios';
 import type { AuthUserParams, AuthUserResponse, CreateUserParams, CreateUserResponse } from "~/types/services";
 
 /**
@@ -9,14 +9,11 @@ export async function login(params: AuthUserParams): Promise<AuthUserResponse> {
   try {
     const { data } = await api.post<AuthUserResponse>('/auth/login', params);
     
-    // Armazena o token em cookie seguro (lado cliente)
-    if (data.result?.token && typeof window !== 'undefined') {
-      setCookie('authToken', data.result.token, 7); // 7 dias
-      
-      // Armazena username também (usa email como fallback)
-      const username = (data.result as any)?.username || (data.result as any)?.email || params.email;
-      setCookie('username', username, 7);
-    }
+    // O cookie é setado automaticamente pelo backend via Set-Cookie header
+    // Não precisamos setar manualmente aqui, pois:
+    // 1. O authToken é httpOnly (não acessível via JS)
+    // 2. O username também é setado pelo backend
+    // A duplicação causava conflitos de cookies
     
     return data;
   } catch (error: any) {

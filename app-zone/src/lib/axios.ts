@@ -29,16 +29,22 @@ export const setCookie = (name: string, value: string, days: number = 7): void =
   const expires = new Date();
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   
-  // Segurança aprimorada: SameSite=Strict, Secure em produção
+  // Em produção com domínios diferentes, usamos SameSite=None + Secure
+  // Em desenvolvimento, usamos SameSite=Lax
   const isProduction = process.env.NODE_ENV === 'production';
+  const sameSite = isProduction ? 'None' : 'Lax';
   const secureFlag = isProduction ? '; Secure' : '';
   
-  document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/; SameSite=Strict${secureFlag}`;
+  document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/; SameSite=${sameSite}${secureFlag}`;
 };
 
 export const deleteCookie = (name: string): void => {
   if (typeof window === 'undefined') return;
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Strict`;
+  // Deve usar as mesmas opções do setCookie para deletar corretamente
+  const isProduction = process.env.NODE_ENV === 'production';
+  const sameSite = isProduction ? 'None' : 'Lax';
+  const secureFlag = isProduction ? '; Secure' : '';
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=${sameSite}${secureFlag}`;
 };
 
 /**

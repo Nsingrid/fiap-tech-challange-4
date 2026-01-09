@@ -61,18 +61,22 @@ export class UserController {
     });
 
     // Configurar cookies httpOnly e secure
-    res.cookie('authToken', token, {
+    // Em produção com domínios diferentes, usamos sameSite: 'none' + secure: true
+    // Em desenvolvimento, usamos sameSite: 'lax'
+    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: isProduction,
+      sameSite: isProduction ? 'none' as const : 'lax' as const,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 dias
-    });
+      path: '/',
+    };
+
+    res.cookie('authToken', token, cookieOptions);
 
     res.cookie('username', user.username, {
-      httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      ...cookieOptions,
+      httpOnly: false, // username precisa ser acessível no cliente
     });
 
     const response: ServiceResponse = {
@@ -91,8 +95,17 @@ export class UserController {
   }
 
   async logout(req: Request, res: Response): Promise<Response> {
-    res.clearCookie('authToken');
-    res.clearCookie('username');
+    // clearCookie deve usar as mesmas opções do set cookie para funcionar
+    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: isProduction ? 'none' as const : 'lax' as const,
+      path: '/',
+    };
+
+    res.clearCookie('authToken', cookieOptions);
+    res.clearCookie('username', { ...cookieOptions, httpOnly: false });
 
     const response: ServiceResponse = {
       message: 'Logout successful',
