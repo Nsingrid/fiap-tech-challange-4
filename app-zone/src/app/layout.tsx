@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "FIAP - 2º Tech Challenge",
+  title: "FIAP - 4º Tech Challenge",
   description:
-    "Aplicação do 2º Tech Challenge da pós-graduação de Front-end Engineering da FIAP",
+    "Aplicação do 4º Tech Challenge da pós-graduação de Front-end Engineering da FIAP",
 };
 
 export default function RootLayout({
