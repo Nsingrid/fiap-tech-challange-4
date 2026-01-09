@@ -11,7 +11,9 @@ const PROTECTED_ROUTES = ["/dashboard", "/investimentos"];
 export function middleware(request: NextRequest) {
   // Aplica middleware de segurança primeiro
   const securityResponse = securityMiddleware(request);
-  if (securityResponse.status !== 200) {
+  
+  // Se o securityMiddleware retornou erro (não é um "next"), retorna a resposta de erro
+  if (securityResponse.status >= 400) {
     return securityResponse;
   }
 
