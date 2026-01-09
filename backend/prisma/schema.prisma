@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  accounts Account[]
+
+  @@map("users")
+}
+
+model Account {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  accountNumber String   @unique @map("account_number")
+  accountType   String   @default("CHECKING") @map("account_type")
+  balance       BigInt   @default(0) // em centavos
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  cards        Card[]
+  investments  Investment[]
+
+  @@map("accounts")
+}
+
+enum TransactionType {
+  Credit
+  Debit
+}
+
+model Transaction {
+  id                String          @id @default(uuid())
+  accountId         String          @map("account_id")
+  type              TransactionType
+  value             BigInt // em centavos
+  date              DateTime        @default(now())
+  category          String
+  investmentCategory String?        @map("investment_category")
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+
+  account Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@map("transactions")
+}
+
+model Card {
+  id             String   @id @default(uuid())
+  accountId      String   @map("account_id")
+  cardNumber     String   @map("card_number") // deve ser encriptado na aplicação
+  cardholderName String   @map("cardholder_name")
+  expiryDate     DateTime @map("expiry_date")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  account Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@map("cards")
+}
+
+model Investment {
+  id        String   @id @default(uuid())
+  accountId String   @map("account_id")
+  type      String // Ex: "Renda Fixa", "Renda Variável"
+  category  String // Ex: "Tesouro Direto", "Fundos de investimento"
+  value     BigInt // em centavos
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  account Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@map("investments")
+}

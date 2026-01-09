@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  .container {
+    @apply w-[90%] max-w-7xl mx-auto px-4;
+  }
+
+  .container-fluid {
+    @apply w-full px-4;
+  }
+  
+  /* Utilities personalizadas */
+  .animate-shimmer {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+  }
+}
+
+/* CSS Variables legadas (manter compatibilidade) */
+:root {
+  --color-primary: #004d61;
+  --color-secondary: #ff5031;
+  --color-tertiary: #dee9ea;
+  --color-quaternary: #f8f8f8;
+  --color-quinary: #e4ede3;
+  --color-success: #47a138;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray: #8b8b8b;
+  --color-dark-gray: #444444;
+  --color-light-gray: #cbcbcb;
+  --color-light-green: #d7e1d8;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-11: 48px;
+  --spacing-12: 52px;
+  --spacing-13: 56px;
+  --spacing-14: 58px;
+  --spacing-15: 60px;
+  --spacing-16: 64px;
+}
+
+/* Responsividade */
+@media (max-width: 720px) {
+  .container {
+    @apply max-w-[600px];
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    @apply max-w-[310px];
+  }
+}

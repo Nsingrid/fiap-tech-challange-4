@@ -1,0 +1,24 @@
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.feature .title {
+  font-family: var(--font-inter);
+  font-size: var(--spacing-5);
+  color: var(--color-success);
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.feature .description {
+  font-family: var(--font-inter);
+  font-size: var(--spacing-4);
+  color: var(--color-gray);
+  font-weight: 400;
+  line-height: 120%;
+  text-align: center;
+}

@@ -1,0 +1,33 @@
+.moneyInput {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.labelText {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-tertiary);
+}
+
+.valueInput {
+  width: 260px;
+  height: var(--spacing-11);
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-black);
+  text-align: center;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--spacing-2);
+}
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.disabled .valueInput {
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+}

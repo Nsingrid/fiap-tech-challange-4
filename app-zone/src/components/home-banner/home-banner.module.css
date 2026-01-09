@@ -1,0 +1,32 @@
+.banner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: var(--spacing-7);
+  color: var(--color-black);
+  max-width: 40%;
+}
+
+@media (max-width: 720px) {
+  .banner {
+    flex-direction: column;
+  }
+
+  .title {
+    text-align: center;
+    max-width: 75%;
+  }
+}
+
+@media (max-width: 360px) {
+  .title {
+    max-width: 100%;
+  }
+}

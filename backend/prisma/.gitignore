@@ -1,0 +1,6 @@
+# Arquivo de configuração local (não commitar)
+.env
+
+# Banco de dados
+*.db
+*.db-journal

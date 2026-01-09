@@ -1,0 +1,148 @@
+.header {
+  background-color: var(--color-primary);
+}
+
+.nav {
+  height: 96px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menuRight {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-10);
+}
+
+.name {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-white);
+}
+
+.menuLeft {
+  display: none;
+}
+
+.modalMenuHidden {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 256px;
+  width: 172px;
+  background-color: var(--color-quinary);
+  padding: var(--spacing-3);
+  display: none;
+  animation: fadein 0.2s ease-in-out;
+}
+
+.modalMenuHidden.isOpen {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalMenuHidden .closeIconWrapper {
+  align-self: flex-end;
+}
+
+.ul {
+  margin-top: var(--spacing-2);
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.ul a {
+  font-family: var(--font-inter);
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--color-black);
+  font-weight: 400;
+}
+
+.ul li:first-of-type a {
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.ul li:not(:last-of-type)::after {
+  content: "";
+  margin: 16px auto;
+  width: 112px;
+  height: 1px;
+  background-color: black;
+  display: block;
+}
+
+.ul li:first-of-type::after {
+  background-color: var(--color-success);
+}
+
+.logoutItem {
+  margin-top: 16px;
+}
+
+.logoutItem::after {
+  content: "" !important;
+  display: none !important;
+}
+
+.logoutButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-inter);
+}
+
+.logoutButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.logoutButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .menuRight {
+    gap: var(--spacing-4);
+  }
+}
+
+@media (max-width: 360px) {
+  .menuLeft {
+    display: block;
+  }
+
+  .nav {
+    justify-content: space-between;
+  }
+
+  .header {
+    padding: 0 var(--spacing-6);
+  }
+
+  .name {
+    display: none;
+  }
+}

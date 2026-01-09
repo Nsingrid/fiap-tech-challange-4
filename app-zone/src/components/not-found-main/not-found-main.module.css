@@ -1,0 +1,44 @@
+.main {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-8) 0 var(--spacing-16);
+  background: linear-gradient(
+    180deg,
+    var(--color-primary) 0%,
+    var(--color-white) 100%
+  );
+}
+
+.banner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--color-black);
+  text-align: center;
+  max-width: 480px;
+}
+
+.description {
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-black);
+  text-align: center;
+  max-width: 480px;
+}

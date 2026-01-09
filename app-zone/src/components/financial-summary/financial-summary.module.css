@@ -1,0 +1,152 @@
+.financialSummary {
+  width: 100%;
+  max-width: 680px;
+  padding: var(--spacing-6);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  gap: var(--spacing-6);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+  animation: fadeInDown 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.financialSummary::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.greetingText {
+  font-family: var(--font-inter);
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--color-white);
+  position: relative;
+  z-index: 1;
+}
+
+.dateLong {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.financialBalance {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.balanceBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  min-width: 260px;
+}
+
+.headingBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.headingBox h3 {
+  font-family: var(--font-inter);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.headingBox svg {
+  width: 20px;
+  height: 20px;
+  fill: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.headingBox svg:hover {
+  fill: var(--color-white);
+}
+
+.divider {
+  width: 100%;
+  max-width: 180px;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: rgba(255, 255, 255, 0.3);
+}
+
+.checkingAccount {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.checkingAccount h4 {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.checkingAccount span {
+  font-family: var(--font-inter);
+  font-size: 31px;
+  font-weight: 600;
+  color: var(--color-white);
+  animation: slideInRight 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 720px) {
+  .financialSummary {
+    max-width: 600px;
+  }
+}
+

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: fiap-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: fiap_tech_challenge
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - fiap-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fiap-backend
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/fiap_tech_challenge?schema=public"
+      JWT_SECRET: "your-super-secret-jwt-key-change-this-in-production"
+      JWT_EXPIRES_IN: "7d"
+      PORT: 3333
+      NODE_ENV: "development"
+      FRONTEND_URL: "http://localhost:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - fiap-network
+    command: sh -c "npx prisma migrate deploy && npm run dev"
+
+volumes:
+  postgres_data:
+
+networks:
+  fiap-network:
+    driver: bridge

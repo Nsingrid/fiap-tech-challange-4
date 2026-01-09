@@ -1,0 +1,113 @@
+.main {
+  display: flex;
+  flex: 1;
+  padding: var(--spacing-6) 0;
+  background-color: var(--color-quinary);
+  font-family: var(--font-inter);
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing-6);
+}
+
+/* Investment Container Styles */
+.investmentContainer {
+  width: 100%;
+  margin-top: var(--spacing-6);
+}
+
+.investmentCard {
+  background-color: #cbcbcb;
+  border-radius: var(--spacing-2);
+  padding: var(--spacing-6);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  color: var(--color-black);
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.totalSection {
+  margin-bottom: var(--spacing-6);
+}
+
+.totalLabel {
+  color: var(--color-primary);
+  font-size: 20px;
+  font-weight: var(--font-weight-medium);
+}
+
+.summaryCards {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+.card {
+  flex: 1;
+  background-color: var(--color-primary);
+  border-radius: var(--spacing-2);
+  padding: var(--spacing-4);
+  text-align: center;
+}
+
+.cardTitle {
+  color: var(--color-white);
+  font-size: 14px;
+  opacity: 0.8;
+  font-weight: 100;
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.cardValue {
+  color: var(--color-white);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+.statisticsSection {
+  margin-top: var(--spacing-4);
+}
+
+.statisticsTitle {
+  color: var(--color-black);
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.chartContainer {
+  height: 250px;
+  background-color: var(--color-primary);
+  border-radius: var(--spacing-2);
+  align-content: center;
+}
+
+@media (max-width: 720px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .summaryCards {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+
+  .navbar svg {
+    width: 146px;
+  }
+}

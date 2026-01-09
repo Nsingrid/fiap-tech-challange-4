@@ -1,0 +1,39 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  border: none;
+  border-radius: var(--spacing-2);
+  width: 692px;
+  height: 480px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-light-gray);
+}
+
+.innerContainer {
+  padding: var(--spacing-8) var(--spacing-7);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-7);
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-6);
+  background: transparent;
+  color: var(--color-tertiary);
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.titleText {
+  font-family: var(--font-inter);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-tertiary);
+}

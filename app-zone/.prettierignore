@@ -1,0 +1,30 @@
+# markdown files
+*.md
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# version control
+.git
+
+# lockfiles
+package-lock.json
+
+# env files
+.env*
+
+# public assets
+public
+
+# storybook
+/storybook-static
+
+# testing
+/coverage

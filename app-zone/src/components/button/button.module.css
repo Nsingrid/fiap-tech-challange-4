@@ -1,0 +1,115 @@
+.button {
+  display: block;
+  cursor: pointer;
+  font-family: var(--font-inter);
+  font-size: var(--spacing-4);
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  padding: 0 var(--spacing-4);
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ghost {
+  width: auto;
+}
+
+.small {
+  width: 140px;
+}
+
+.medium {
+  width: 180px;
+}
+
+.large {
+  width: 260px;
+}
+
+.full {
+  width: 100%;
+}
+
+/* Botão principal: fundo verde, texto preto */
+.button.homePrimary {
+  background: linear-gradient(135deg, #00c853 0%, #00b386 100%);
+  color: var(--color-black);
+  border: 2px solid transparent;
+  height: 52px;
+  font-weight: 700;
+}
+
+.button.homePrimary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #00b386 0%, #009973 100%);
+  box-shadow: 0 8px 20px rgba(0, 200, 83, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Botão secundário: fundo preto, texto e borda verdes */
+.button.homeSecondary {
+  background-color: var(--color-black);
+  color: var(--color-success);
+  border: 2px solid var(--color-success);
+  height: 52px;
+}
+
+.button.homeSecondary:hover:not(:disabled) {
+  background-color: var(--color-success);
+  color: var(--color-white);
+  box-shadow: 0 8px 20px rgba(0, 200, 83, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Botão principal do Dashboard: gradiente roxo */
+.button.dashPrimary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--color-white);
+  border: none;
+  height: 52px;
+  font-weight: 700;
+}
+
+.button.dashPrimary:hover:not(:disabled) {
+  box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Botão principal do Modal: fundo azul, texto branco */
+.button.modalPrimary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--color-white);
+  border: none;
+  height: 52px;
+  font-weight: 700;
+}
+
+.button.modalPrimary:hover:not(:disabled) {
+  box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Botão ghost: sem fundo, sem borda */
+.button.ghost {
+  background: none;
+  border: none;
+  color: var(--color-success);
+  padding: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.button.ghost:hover:not(:disabled) {
+  opacity: 0.8;
+  transform: scale(1.05);
+}

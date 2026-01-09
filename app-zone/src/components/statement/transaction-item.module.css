@@ -1,0 +1,51 @@
+.transactionItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.date {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-success);
+}
+
+.type {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray);
+}
+
+.wrapperTypeDate {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-4);
+}
+
+.bottomWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.value {
+  font-weight: 600;
+  font-size: 16px;
+  font-family: var(--font-inter);
+}
+
+.iconWrapper {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.iconWrapper svg {
+  width: var(--spacing-6);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--color-success);
+}
