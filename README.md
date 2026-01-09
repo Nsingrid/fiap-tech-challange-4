@@ -117,5 +117,10 @@ const debouncedSearch = useDebounce(search, 300);
 const throttledScroll = useThrottle(onScroll, 100);
 ```
 
+### Deploy 
+```
+https://fiap-tech-challange-4.vercel.app/
+```
+
 
 
