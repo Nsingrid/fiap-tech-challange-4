@@ -70,12 +70,6 @@ src/
   - Validação com Zod
 - **DX**: TypeScript strict, ESLint, Prettier
 
-## 📊 Performance Metrics
-
-- **Lighthouse Score**: 95+
-- **First Contentful Paint**: < 1.5s
-- **Time to Interactive**: < 3.5s
-- **Bundle Size**: Reduzido em 40%
 
 ## 🔒 Segurança
 
