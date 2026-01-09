@@ -9,14 +9,21 @@ const PUBLIC_ROUTES = ["/", "/login"];
 const PROTECTED_ROUTES = ["/dashboard", "/investimentos"];
 
 export function middleware(request: NextRequest) {
-  // Aplica middleware de segurança primeiro
-  const securityResponse = securityMiddleware(request);
-  if (securityResponse.status !== 200) {
-    return securityResponse;
+  const pathname = request.nextUrl.pathname;
+
+  // Pula o middleware de segurança (rate limiting) para API routes internas do Next.js
+  // Essas são rotas server-side que fazem proxy para o backend
+  const isNextApiRoute = pathname.startsWith("/api/");
+  
+  if (!isNextApiRoute) {
+    // Aplica middleware de segurança apenas para rotas de página
+    const securityResponse = securityMiddleware(request);
+    if (securityResponse.status !== 200) {
+      return securityResponse;
+    }
   }
 
   const token = request.cookies.get("authToken")?.value;
-  const pathname = request.nextUrl.pathname;
 
   // Se está na raiz e tem token, redireciona para dashboard
   if (pathname === "/" && token) {

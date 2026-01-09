@@ -3,46 +3,75 @@ import type { AuthUserParams, AuthUserResponse, CreateUserParams, CreateUserResp
 
 /**
  * Realiza login com email e senha
- * Retorna token JWT e dados do usuário
+ * Usa a API route local do Next.js para que o cookie seja setado no mesmo domínio
  */
 export async function login(params: AuthUserParams): Promise<AuthUserResponse> {
   try {
-    const { data } = await api.post<AuthUserResponse>('/auth/login', params);
-    
-    // O cookie é setado automaticamente pelo backend via Set-Cookie header
-    // Não precisamos setar manualmente aqui, pois:
-    // 1. O authToken é httpOnly (não acessível via JS)
-    // 2. O username também é setado pelo backend
-    // A duplicação causava conflitos de cookies
-    
+    // Chama a API route local do Next.js (não o backend diretamente)
+    // Isso garante que o cookie seja setado no domínio do frontend
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ message: 'Falha ao fazer login' }));
+      throw new Error(error.message || 'Falha ao fazer login');
+    }
+
+    const data = await response.json();
     return data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || 'Falha ao fazer login');
+    throw new Error(error.message || 'Falha ao fazer login');
   }
 }
 
 /**
  * Registra um novo usuário
+ * Usa a API route local do Next.js para consistência
  */
 export async function signup(params: CreateUserParams): Promise<CreateUserResponse> {
   try {
-    const { data } = await api.post<CreateUserResponse>('/users', params);
+    const response = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ message: 'Falha ao registrar' }));
+      throw new Error(error.message || 'Falha ao registrar');
+    }
+
+    const data = await response.json();
     return data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || 'Falha ao registrar');
+    throw new Error(error.message || 'Falha ao registrar');
   }
 }
 
 /**
  * Faz logout do usuário
+ * Usa a API route local do Next.js para remover os cookies corretamente
  */
 export async function logout(): Promise<void> {
   try {
-    await api.post('/auth/logout');
+    // Chama a API route local do Next.js para remover cookies server-side
+    await fetch('/api/auth/logout', {
+      method: 'POST',
+      credentials: 'include',
+    });
   } catch (error) {
     console.error("Erro ao fazer logout:", error);
   } finally {
-    // Remove cookies no cliente
+    // Remove cookies no cliente também (backup)
     deleteCookie('authToken');
     deleteCookie('username');
   }

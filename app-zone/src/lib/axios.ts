@@ -58,6 +58,7 @@ export async function clearEndpointCache(endpoints: string[]): Promise<void> {
 }
 
 // Instância configurada do axios com timeout
+// NEXT_PUBLIC_BACKEND_URL já inclui /api no .env
 export const api = axios.create({
   baseURL: BACKEND_URL,
   timeout: 15000, // 15 segundos

@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3333";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
     // Faz a chamada para o backend real
+    // NEXT_PUBLIC_BACKEND_URL já inclui /api
     const response = await fetch(`${BACKEND_URL}/auth/login`, {
       method: "POST",
       headers: {
