@@ -1,4 +1,4 @@
-# FIAP Tech Challenge 2 - Backend API
+# FIAP Tech Challenge 4 - Backend API
 
 API RESTful desenvolvida com **Express**, **TypeScript**, **Prisma ORM** e **PostgreSQL**, seguindo os princípios de **Clean Architecture** para gerenciamento financeiro.
 

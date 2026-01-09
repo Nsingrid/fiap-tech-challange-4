@@ -1,4 +1,4 @@
-# 🚀 FIAP Tech Challenge 2 - FinApp
+# 🚀 FIAP Tech Challenge 4
 
 Sistema de gerenciamento financeiro construído com Next.js 15, React 19, Tailwind CSS 4 e TypeScript.
 
