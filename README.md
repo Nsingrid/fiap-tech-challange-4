@@ -85,10 +85,6 @@ src/
 - ✅ Input validation
 - ✅ XSS protection
 
-## 📚 Documentação
-
-- [Arquitetura Completa](./ARCHITECTURE.md)
-- [Histórico de Refatoração](./REFACTORING_SUMMARY.md)
 
 ## 🧪 Scripts Disponíveis
 
