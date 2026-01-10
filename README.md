@@ -111,12 +111,6 @@ await httpService.fetch('/api/data', {
 const encrypted = await encryptionService.encrypt(data, password);
 ```
 
-### Performance Hooks
-```typescript
-const debouncedSearch = useDebounce(search, 300);
-const throttledScroll = useThrottle(onScroll, 100);
-```
-
 ### Deploy 
 ```
 https://fiap-tech-challange-4.vercel.app/
